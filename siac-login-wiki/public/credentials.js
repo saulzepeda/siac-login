@@ -1,4 +1,4 @@
 export const credentials = {
-	email: 'test@siac.com',
-	password: 'L0g1n*',
+	email: 'Test123',
+	password: 'password@2',
 };
