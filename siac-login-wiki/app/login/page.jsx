@@ -24,9 +24,10 @@ const Login = () => {
 
 	return (
 		<div>
-			<header className="flex flex-col items-center mt-4 mb-8">
-				<h2 className="text-2xl font-bold text-gray-700 mb-4">User Login</h2>
+			<header className="flex items-center justify-center mt-8 mb-8 space-x-8">
 				<Image src="/siac-logo.png" alt="SIAC Logo" width={180} height={38} />
+				<h2 className="text-5xl font-bold">|</h2>
+				<h2 className="text-3xl font-bold text-gray-700">User Login</h2>
 			</header>
 			<main className="flex justify-center">
 				{!isUserLogged ? (
