@@ -23,7 +23,7 @@ const Login = () => {
 	};
 
 	return (
-		<div>
+		<>
 			<header className="flex items-center justify-center mt-8 mb-8 space-x-8">
 				<Image src="/siac-logo.png" alt="SIAC Logo" width={180} height={38} />
 				<h2 className="text-5xl font-bold">|</h2>
@@ -83,7 +83,7 @@ const Login = () => {
 					</div>
 				)}
 			</main>
-		</div>
+		</>
 	);
 };
 export default Login;
