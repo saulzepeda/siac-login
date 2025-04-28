@@ -1,10 +1,12 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
+import { credentials } from '@/public/credentials';
 
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [isUserLogged, setIsUserLogged] = useState(false);
 
 	const handleEmailChange = (event) => {
 		setEmail(event.target.value);
@@ -14,6 +16,12 @@ const Login = () => {
 		setPassword(event.target.value);
 	};
 
+	const login = () => {
+		if (credentials.email === email && credentials.password === password) {
+			setIsUserLogged(true);
+		}
+	};
+
 	return (
 		<div>
 			<header className="flex flex-col items-center mt-4 mb-8">
@@ -21,44 +29,58 @@ const Login = () => {
 				<Image src="/siac-logo.png" alt="SIAC Logo" width={180} height={38} />
 			</header>
 			<main className="flex justify-center">
-				<form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mt-4">
-					<div className="mb-4">
-						<label className="block xt-gray-700 font-bold mb-2" htmlFor="email">
-							Email
-						</label>
-						<input
-							id="email"
-							type="email"
-							className="border rounded py-2 px-3"
-							value={email}
-							onChange={handleEmailChange}
-						></input>
+				{!isUserLogged ? (
+					<form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mt-4">
+						<div className="mb-4">
+							<label
+								className="block xt-gray-700 font-bold mb-2"
+								htmlFor="email"
+							>
+								Email
+							</label>
+							<input
+								id="email"
+								type="email"
+								className="border rounded py-2 px-3"
+								value={email}
+								onChange={handleEmailChange}
+							></input>
+						</div>
+						<div className="mb-8">
+							<label
+								className="block xt-gray-700 font-bold mb-2"
+								htmlFor="password"
+							>
+								Password
+							</label>
+							<input
+								id="password"
+								type="password"
+								className="border rounded py-2 px-3"
+								value={password}
+								onChange={handlePasswordChange}
+							></input>
+						</div>
+						<div className="flex items-center justify-between">
+							<button
+								className="rounded bg-blue-800 text-white font-bold py-2 px-4 w-full"
+								type="button"
+								onClick={login}
+							>
+								Sign In
+							</button>
+						</div>
+					</form>
+				) : (
+					<div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mt-4">
+						<h2 className="block text-gray-700 font-bold mb-2">
+							Login Successful
+						</h2>
+						<h2 className="block text-gray-500 font-bold mb-2">
+							Welcome back <span className="text-blue-700">{email}</span> !
+						</h2>
 					</div>
-					<div className="mb-8">
-						<label
-							className="block xt-gray-700 font-bold mb-2"
-							htmlFor="password"
-						>
-							Password
-						</label>
-						<input
-							id="password"
-							type="password"
-							className="border rounded py-2 px-3"
-							value={password}
-							onChange={handlePasswordChange}
-						></input>
-					</div>
-					<div className="flex items-center justify-between">
-						<button
-							className="rounded bg-blue-800 text-white font-bold py-2 px-4 w-full"
-							type="button"
-                            onClick={}
-						>
-							Sign In
-						</button>
-					</div>
-				</form>
+				)}
 			</main>
 		</div>
 	);
